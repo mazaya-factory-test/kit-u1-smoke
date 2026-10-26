@@ -6,7 +6,7 @@ import { SiteFooter } from "../components/layout/SiteFooter";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { MAIN_ID, SkipLink } from "../components/layout/SkipLink";
 import { JsonLd, organizationJsonLd } from "../lib/seo/json-ld";
-import { getSiteConfig } from "../lib/seo/site";
+import { getSiteConfig, siteBaseUrl } from "../lib/seo/site";
 import "./globals.css";
 
 const site = getSiteConfig();
@@ -30,7 +30,7 @@ const CSP = [
 const BUILD_ID = process.env.NEXT_PUBLIC_BUILD_ID ?? "0000000";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: siteBaseUrl(site),
   title: { default: site.name, template: `%s | ${site.name}` },
   other: { "build-id": BUILD_ID },
 };

@@ -1,7 +1,10 @@
-// kit:gates@0.1.0 harvested from mazaya-studios:scripts/check-links.ts (rewritten as zero-dependency Node ESM)
+// kit:gates@0.1.1 harvested from mazaya-studios:scripts/check-links.ts (rewritten as zero-dependency Node ESM)
 // Static-export link gate: every internal href/src in out/**/*.html must resolve to a file in out/,
-// and every #fragment must be an id on the target page. Usage: node scripts/check-links.mjs [outDir]
-// Exit 0 ok, 1 broken links, 2 outDir missing.
+// and every #fragment must be an id on the target page.
+// Usage: node scripts/check-links.mjs [outDir] [--base-path /repo]
+// With --base-path (a GitHub Pages project site, next.config `basePath`), Next writes files at the out/ root
+// but every root-absolute href must carry the prefix; one that does not is reported as outside-base-path.
+// Exit 0 ok, 1 broken links, 2 outDir missing or bad usage.
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -89,11 +92,24 @@ export function resolveToFile(outDir, pathname) {
 
 const EXTERNAL_RE = /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/)/;
 
+/** "/repo/" and "repo" become "/repo"; "" and "/" become "". Throws on a query, fragment, space, scheme or dot segment. */
+export function normalizeBasePath(raw) {
+  const trimmed = String(raw ?? "").trim();
+  if (/[?#\s\\]/.test(trimmed) || /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) {
+    throw new Error(`base path must be a plain path, got "${trimmed}"`);
+  }
+  const segments = trimmed.split("/").filter(Boolean);
+  if (segments.some((seg) => seg === "." || seg === "..")) throw new Error(`base path must not contain . or .. segments, got "${trimmed}"`);
+  return segments.length > 0 ? `/${segments.join("/")}` : "";
+}
+
 /**
  * @param {string} outDir
- * @returns {{ file: string, href: string, reason: "missing-file"|"missing-anchor" }[]}
+ * @param {{ basePath?: string }} [options] basePath: the prefix the site is served under ("/repo"), default none
+ * @returns {{ file: string, href: string, reason: "missing-file"|"missing-anchor"|"outside-base-path" }[]}
  */
-export function checkOut(outDir) {
+export function checkOut(outDir, options = {}) {
+  const base = normalizeBasePath(options.basePath);
   const problems = [];
   const idCache = new Map();
   const idsOf = (file) => {
@@ -119,19 +135,29 @@ export function checkOut(outDir) {
       seen.add(key);
       problems.push({ file: rel, href, reason });
     };
+    const inOut = pagePath(outDir, file); // where the page sits inside out/
     for (const { value } of extractRefs(readFileSync(file, "utf8")).refs) {
       if (value === "" || EXTERNAL_RE.test(value)) continue;
       let url;
       try {
-        url = new URL(value, `http://site.invalid${pagePath(outDir, file)}`);
+        // Resolve against the URL the page is SERVED at (base path included), so relative links behave as in a browser.
+        url = new URL(value, `http://site.invalid${base}${inOut}`);
       } catch {
         report(value, "missing-file");
         continue;
       }
+      let pathname = url.pathname;
+      if (base) {
+        if (pathname !== base && !pathname.startsWith(`${base}/`)) {
+          report(value, "outside-base-path"); // would hit the domain root, not the site, once deployed
+          continue;
+        }
+        pathname = pathname.slice(base.length) || "/";
+      }
       const fragment = url.hash.replace(/^#/, "");
-      const targetFile = url.pathname === pagePath(outDir, file) && value.startsWith("#")
+      const targetFile = pathname === inOut && value.startsWith("#")
         ? file
-        : resolveToFile(outDir, url.pathname);
+        : resolveToFile(outDir, pathname);
       if (targetFile === null) {
         report(value, "missing-file");
         continue;
@@ -142,22 +168,63 @@ export function checkOut(outDir) {
   return problems;
 }
 
+/**
+ * Parse CLI arguments: `[outDir] [--base-path /repo | --base-path=/repo]`.
+ * @param {string[]} argv
+ * @returns {{ outDir?: string, basePath?: string }}
+ */
+export function parseArgs(argv) {
+  const parsed = {};
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (a === "--base-path") {
+      const v = argv[++i];
+      if (v === undefined) throw new Error("--base-path needs a value");
+      parsed.basePath = v;
+    } else if (a.startsWith("--base-path=")) {
+      parsed.basePath = a.slice("--base-path=".length);
+    } else if (a.startsWith("--")) {
+      throw new Error(`unknown option ${a}`);
+    } else if (parsed.outDir === undefined) {
+      parsed.outDir = a;
+    } else {
+      throw new Error(`unexpected argument ${a}`);
+    }
+  }
+  return parsed;
+}
+
 /** CLI body, separated so tests can call it. Returns the exit code. */
-export function run(outDir, log = { out: console.log, err: console.error }) {
+export function run(outDir, log = { out: console.log, err: console.error }, options = {}) {
   if (!existsSync(outDir) || !statSync(outDir).isDirectory()) {
     log.err(`check-links: ${outDir}/ does not exist. Run the build first.`);
     return 2;
   }
-  const problems = checkOut(outDir);
+  let problems;
+  try {
+    problems = checkOut(outDir, options);
+  } catch (e) {
+    log.err(`check-links: ${e instanceof Error ? e.message : String(e)}`);
+    return 2;
+  }
+  const where = options.basePath ? `${outDir} (base path ${normalizeBasePath(options.basePath) || "/"})` : outDir;
   if (problems.length > 0) {
-    log.err(`check-links: FAILED with ${problems.length} problem(s) in ${outDir}`);
+    log.err(`check-links: FAILED with ${problems.length} problem(s) in ${where}`);
     for (const p of problems) log.err(`  ${p.file}:${p.href} (${p.reason})`);
     return 1;
   }
-  log.out(`check-links: OK, every internal href/src/anchor resolves in ${outDir}`);
+  log.out(`check-links: OK, every internal href/src/anchor resolves in ${where}`);
   return 0;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  process.exit(run(process.argv[2] ?? process.env.OUT_DIR ?? "out"));
+  let args;
+  try {
+    args = parseArgs(process.argv.slice(2));
+  } catch (e) {
+    console.error(`check-links: ${e instanceof Error ? e.message : String(e)}`);
+    console.error("usage: node scripts/check-links.mjs [outDir] [--base-path /repo]");
+    process.exit(2);
+  }
+  process.exit(run(args.outDir ?? process.env.OUT_DIR ?? "out", undefined, { basePath: args.basePath }));
 }

@@ -1,4 +1,4 @@
-// kit:gates@0.1.0 harvested from "Card Centering Scanner":scripts/setup-hooks.mjs
+// kit:gates@0.1.1 harvested from "Card Centering Scanner":scripts/setup-hooks.mjs
 // Arms core.hooksPath=.githooks, but never from a linked worktree (core.hooksPath lives in the
 // SHARED git config, so writing it there would silently change the main checkout's hooks).
 // Always exits 0 so `npm install` (which runs `prepare`) never breaks.

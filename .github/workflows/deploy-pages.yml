@@ -30,6 +30,8 @@ jobs:
       - run: npm run verify
         env:
           NEXT_PUBLIC_BUILD_ID: ${{ github.sha }}
+      # Pages must already be enabled with Source "GitHub Actions" (kickoff kit step; the
+      # workflow token cannot create the site: "Resource not accessible by integration").
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

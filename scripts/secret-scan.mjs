@@ -1,4 +1,4 @@
-// kit:gates@0.1.0 harvested from mazaya-studios:.githooks/pre-commit, Projects/secret-scan.sh
+// kit:gates@0.1.1 harvested from mazaya-studios:.githooks/pre-commit, Projects/secret-scan.sh
 // Scans only what is STAGED (added lines of `git diff --cached`). Called by .githooks/pre-commit.
 // Exit 0 clean, 1 findings. Prints file:line with the match masked.
 import { execFileSync } from "node:child_process";

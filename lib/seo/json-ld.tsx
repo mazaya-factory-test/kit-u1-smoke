@@ -1,4 +1,4 @@
-// kit:seo@0.1.1 harvested from creativ-astrology-land:components/JsonLd.tsx; Outreach-master:lib/seo/structured-data.ts
+// kit:seo@0.2.0 harvested from creativ-astrology-land:components/JsonLd.tsx; Outreach-master:lib/seo/structured-data.ts
 import { absoluteUrl, getSiteConfig, type SiteConfig } from "./site";
 
 type JsonLdNode = Record<string, unknown>;

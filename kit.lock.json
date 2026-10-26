@@ -2,20 +2,20 @@
   "kit": 1,
   "blocks": {
     "seo": {
-      "version": "0.1.1",
+      "version": "0.2.0",
       "status": "VERIFIED",
       "files": {
-        "app/robots.test.ts": "9672badac6ea2639cba9cf33ba464a148d4e2c915c42792e2c6b454962e77ea7",
-        "app/robots.ts": "108301eb11c5b0cb390332acdb03bbc6ec8ed726dd5081fd850457c081690ff7",
-        "app/sitemap.test.ts": "18c7b04da7dbd05c508dcc89cae0d2a1ebcb8bbd2aa3b94a1271eb8ffe7b6389",
-        "app/sitemap.ts": "e687cf93d183c8b2da4996b509414d9a39c0c4b7f95a73ffb502ad4e122be20e",
-        "lib/seo/json-ld.test.tsx": "166127b4284c5bbdb2d9938358fd57a23e40ba30b94075e29fcef6851b358df6",
-        "lib/seo/json-ld.tsx": "db4a23c090f543810afa13ae493a5bb631efce8573fcdceec39e9e234fb7e53d",
-        "lib/seo/metadata.test.ts": "6d7afb03722aa1116bb47af10e416dccf3c94e4d63d21d3d34147552ce5d6408",
-        "lib/seo/metadata.ts": "0dcfa1705ab7c6123e9d825317cf81449d64b62c38f0700152160365fe3a24b9",
-        "lib/seo/routes.ts": "9ebade5902bcb9ecd1f75e4286c7841dde42fd039f62cdf28a413e94124e3e16",
-        "lib/seo/site.test.ts": "8c58e79c4539f7535ad6071114ccc9ba786f66190375c9327749b634df06a4b9",
-        "lib/seo/site.ts": "ecfe38a965e803c49ba8b3dcffa1c67bb3092e5156fa892936531243a59a2e0d"
+        "app/robots.test.ts": "5e790cece5173f59aa6024e40f14448773d3db8eaa2e1a3f0b2368deea3b1cc9",
+        "app/robots.ts": "b8394902004c5fe81a587ba7340f7298a7c9c892e60f6168c4e3d39d79d1b1c5",
+        "app/sitemap.test.ts": "9913d7d075233fdad59a4ccb9abfb481abbca4cee52055f779c9b28e0f535f9e",
+        "app/sitemap.ts": "559c77b822f11cb276971b8a32d87cfecafb75be319e2475e246702632165d79",
+        "lib/seo/json-ld.test.tsx": "69ea0e0485a68b22b29dae6c747bc6ed082befffd5a61ebb74116b16f5157663",
+        "lib/seo/json-ld.tsx": "ef7d459f3edaf6b79a4e9a8fb2a16dd95195a1bfec02760ea61c95de6fad8ac6",
+        "lib/seo/metadata.test.ts": "278561bbde9452000abb82f32b0287eeeffa9f9e253467a9fa5e132cf27ea839",
+        "lib/seo/metadata.ts": "605184c827df34f81fd6f9bfbb8d00d6eea8754a4fb0189882be2d386232f229",
+        "lib/seo/routes.ts": "035c21491181a549451028f41319156e6b760de06c8e8d06b6795b47f498e5bc",
+        "lib/seo/site.test.ts": "f44decba18a66dda0873d6e1ad396fff9de572e6cd0c001f14109e262f3b8cc2",
+        "lib/seo/site.ts": "5b209546c0ef181b62a77bb00bbeb90f3e62d4bf8b2b623c87b0fbb0d1ea946f"
       }
     },
     "footer-credit": {
@@ -53,25 +53,25 @@
       }
     },
     "gates": {
-      "version": "0.1.0",
+      "version": "0.1.1",
       "status": "DRAFT",
       "files": {
-        ".githooks/pre-commit": "13876399ca4a3df8b29bdafd9150f175ac04643a98d4a9dccdeeb2ff2ab4b3f5",
-        ".github/workflows/verify.yml": "b457e9b1917b686beb519f0426a41efb00cb6d476c05a880cfc5ce8f8b35cd51",
-        "e2e/a11y.spec.ts": "b43b2a80f0b9d70a5cbd88c7ec191204b5d45414bd87180429089c5e7d183d02",
-        "e2e/routes.ts": "70e8a41f6c457daaff24bc9d117ee35bf441ed28a4e294d9eb4c980b5b965fe0",
-        "e2e/static-server.mjs": "dff69daa6fc77f0cbca3616d185f1dd659b21f0175a92ca54df2002a1f078c9b",
-        "playwright.config.ts": "b7277c83af415d7e31befcb3ef6aea387198e03e64c8e633751463ddd4707a94",
-        "scripts/check-links.d.mts": "16a00d2ff2c6674ccc73b07b8c0e8757616c7aa4cfb5d4ea6cb8b41054554104",
-        "scripts/check-links.mjs": "b09bc9e3236c31cefe55f6f33a0024eca8d4349a38a5735797cef2710a2e9a4b",
-        "scripts/check-links.test.ts": "59a0b47c19fcb6b92de6201e9e1650679ea29bf8e5ac53bdd21c8e9d8f1f98dd",
-        "scripts/secret-patterns.d.mts": "56dc6f6ffed87b0cb572dbfdba0052a740ce33d61eb6f25ad3f0edc75b7622f1",
-        "scripts/secret-patterns.mjs": "d994fab247a28d076f4a5692995c0a2fc35f736b1c0b7c681ef54c8e91bc12b0",
-        "scripts/secret-scan.d.mts": "a732363ef2846cdf099838fd5a08aa2ea96ac277e78ab42045943c5d4724dc55",
-        "scripts/secret-scan.mjs": "10093a8d1487c02483ff49806d7d5b46c0002b20515c7891699b6f09b020c936",
+        ".githooks/pre-commit": "28e26bf7eb611cae2452ec352c89b6dc16cae9f473402516b15bb6eea52e64c7",
+        ".github/workflows/verify.yml": "cc19c2be1ef516bc32a792a715f855b8cc5a1e6de35e85fb4dee09bc672eb6dd",
+        "e2e/a11y.spec.ts": "4f6acc24acfd85c7d2d00f831891cff696d97bf7a12e480d475dbb8e1547f552",
+        "e2e/routes.ts": "e9fcf9f2de067f825250ca8326c187afc9c248a2403f08c332214e3de150b9f3",
+        "e2e/static-server.mjs": "3eecf23855d0b8e869abb59129de91c5a6248e3867ed23568b6cbe3a2c90de2d",
+        "playwright.config.ts": "8d23e6cb2a52ec618ca8c79dd189168f809849f2f41736d3a13ab82baeda1717",
+        "scripts/check-links.d.mts": "6902db141ee59403fcb8cf33ff053c55bfe6831ebbc2b5e9bde8f2bb27cb38ee",
+        "scripts/check-links.mjs": "1f02faa707e869f41fe044c67329eafa13f1d01c34c53103918cabfc7e9c4aec",
+        "scripts/check-links.test.ts": "398837b0c0af4c2808160c5eae6d3f441b3a9b24d733a4f499c02fc74eda9904",
+        "scripts/secret-patterns.d.mts": "038aba8da4aaa914e5599fd1d5cf09b066d5fa73627bac1ebe5cb1f70ab6b133",
+        "scripts/secret-patterns.mjs": "5fa1a73c4777bd6d6b95b69b3ff6cfe6541d9bfeb554576c26fbadf0c2c72822",
+        "scripts/secret-scan.d.mts": "8a9bf0fb6c0866c35e31293c4b37022789d035d2e171aad7bd4c7286a4496015",
+        "scripts/secret-scan.mjs": "1ea56c229db275af97e134552e411d84ff7b72d3f469847b356519f5444752cd",
         "scripts/secret-scan.test.ts": "d580a1c32264f3f4f49a494c3b2c3bdf395fe36a4d77a3a17feec2b47bb673e0",
-        "scripts/setup-hooks.d.mts": "26088f93897fe7b8276074d34118a31b05cfccc891257007bf8c108e99b845c6",
-        "scripts/setup-hooks.mjs": "9796d2dbb6250ba0e6ffc04043aef544f066b418fa97b28669d2ac70c39e28e2",
+        "scripts/setup-hooks.d.mts": "d418fa80f85b78a082396583a3af01c31101e18a113c5d3ecc19addb79e6b612",
+        "scripts/setup-hooks.mjs": "57e8404ff8ae08eefc69ded2cecbba2589f81b919488cf527ed68faf737994bd",
         "scripts/setup-hooks.test.ts": "7de0a84d51d1e620eb6abc5c66f83639981581adddf28ab17c3235f0bdfe8f06"
       }
     }

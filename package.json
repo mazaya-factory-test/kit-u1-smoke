@@ -10,9 +10,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "check:links": "node scripts/check-links.mjs",
+    "check:links": "node scripts/check-links.mjs --base-path=/kit-u1-smoke",
     "verify": "npm run lint && npm run typecheck && npm test && npm run build && npm run check:links",
-    "test:e2e": "playwright test",
+    "test:e2e": "BASE_PATH=/kit-u1-smoke playwright test",
     "prepare": "node scripts/setup-hooks.mjs"
   },
   "dependencies": {

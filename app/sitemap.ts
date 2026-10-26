@@ -1,4 +1,4 @@
-// kit:seo@0.1.1 harvested from Card Centering Scanner:src/app/sitemap.ts; mazaya-studios:app/sitemap.ts
+// kit:seo@0.2.0 harvested from Card Centering Scanner:src/app/sitemap.ts; mazaya-studios:app/sitemap.ts
 import type { MetadataRoute } from "next";
 import { indexableRoutes, routes, type RouteEntry } from "../lib/seo/routes";
 import { absoluteUrl, getSiteConfig, type SiteConfig } from "../lib/seo/site";

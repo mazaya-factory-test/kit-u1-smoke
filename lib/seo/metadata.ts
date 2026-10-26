@@ -1,7 +1,7 @@
-// kit:seo@0.1.1 harvested from creativ-astrology-land:lib/seo.ts
+// kit:seo@0.2.0 harvested from creativ-astrology-land:lib/seo.ts
 import type { Metadata } from "next";
 import { isNonIndexable, routes, type RouteEntry } from "./routes";
-import { absoluteUrl, getSiteConfig, type SiteConfig } from "./site";
+import { absoluteUrl, getSiteConfig, siteBaseUrl, type SiteConfig } from "./site";
 
 export interface BuildMetadataInput {
   title: string;
@@ -29,7 +29,7 @@ export function buildMetadata(
   const noindex = input.noindex === true || isNonIndexable(input.path, registry);
 
   return {
-    metadataBase: new URL(config.url),
+    metadataBase: siteBaseUrl(config),
     title: input.title,
     description: input.description,
     alternates: { canonical: url },

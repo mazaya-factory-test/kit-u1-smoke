@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
+      # The full public URL, base path included on a GitHub Pages project site
+      # (https://owner.github.io/repo): each probe is ${SITE_URL%/}<page>, so a trailing slash is fine.
       SITE_URL: "https://mazaya-factory-test.github.io/kit-u1-smoke"
       PAGES: "/ /about/ /services/ /contact/"
       FORCE_FAIL: ${{ inputs.force_fail || false }}

@@ -1,4 +1,4 @@
-// kit:gates@0.1.0 harvested from Projects/secret-scan.sh (pattern list), mazaya-studios:.githooks/pre-commit
+// kit:gates@0.1.1 harvested from Projects/secret-scan.sh (pattern list), mazaya-studios:.githooks/pre-commit
 // High-confidence credential shapes only. Shared by the pre-commit hook and the tests.
 
 /** @type {{ name: string, re: RegExp }[]} */

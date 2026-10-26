@@ -1,11 +1,15 @@
-// kit:gates@0.1.0 written for the kit; resolution rules mirror scripts/check-links.mjs
+// kit:gates@0.1.1 written for the kit; resolution rules mirror scripts/check-links.mjs
 // Tiny static server for the exported site. Usage: E2E_PORT=4173 node e2e/static-server.mjs [outDir]
+// BASE_PATH=/repo serves the export under that prefix (a GitHub Pages project site, next.config `basePath`):
+// /repo/about/ maps to out/about/index.html and anything outside /repo is a 404, as on the real host.
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { extname, join, resolve, sep } from "node:path";
 
 const root = resolve(process.argv[2] ?? process.env.OUT_DIR ?? "out");
 const port = Number(process.env.E2E_PORT ?? 4173);
+const segments = (process.env.BASE_PATH ?? "").split("/").filter(Boolean);
+const base = segments.length > 0 ? `/${segments.join("/")}` : "";
 
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".json": "application/json",
@@ -14,7 +18,12 @@ const TYPES = {
 };
 
 async function fileFor(pathname) {
-  const clean = decodeURIComponent(pathname).replace(/^\/+/, "");
+  let served = decodeURIComponent(pathname);
+  if (base) {
+    if (served !== base && !served.startsWith(`${base}/`)) return null;
+    served = served.slice(base.length) || "/";
+  }
+  const clean = served.replace(/^\/+/, "");
   for (const c of [join(root, clean, "index.html"), join(root, clean), join(root, `${clean.replace(/\/+$/, "")}.html`)]) {
     if (c !== root && !c.startsWith(root + sep)) continue;
     try {

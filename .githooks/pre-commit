@@ -1,5 +1,5 @@
 #!/bin/sh
-# kit:gates@0.1.0 harvested from mazaya-studios:.githooks/pre-commit
+# kit:gates@0.1.1 harvested from mazaya-studios:.githooks/pre-commit
 # Blocks a commit whose STAGED changes contain a credential shape or an .env file.
 # The patterns live in scripts/secret-patterns.mjs; this wrapper only locates and runs the scanner.
 set -eu

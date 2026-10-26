@@ -1,4 +1,4 @@
-# kit:gates@0.1.0 harvested from Outreach-master:.github/workflows/ci.yml
+# kit:gates@0.1.1 harvested from Outreach-master:.github/workflows/ci.yml
 # The `verify` job is the required status check. e2e (npm run test:e2e) stays opt-in and is not run here.
 name: verify
 
