@@ -1,0 +1,65 @@
+# U1 monitor (FACTORY-SPEC.md §9.3): daily, GET every scoped page and assert 200
+# plus the build-id marker. Opens one `monitor-red` issue on failure and closes it
+# on the next green run. `force_fail` probes a path that cannot exist (§4 S14 test-fire).
+name: monitor
+
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+    inputs:
+      force_fail:
+        description: Probe a path that cannot exist, to test the red path
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SITE_URL: "https://mazaya-factory-test.github.io/kit-u1-smoke"
+      PAGES: "/ /about/ /services/ /contact/"
+      FORCE_FAIL: ${{ inputs.force_fail || false }}
+    steps:
+      - id: probe
+        shell: bash
+        run: |
+          set -u
+          pages="$PAGES"
+          if [ "$FORCE_FAIL" = "true" ]; then pages="$pages /monitor-force-fail-does-not-exist/"; fi
+          failed=""
+          for p in $pages; do
+            body=$(mktemp)
+            code=$(curl -sS -o "$body" -w '%{http_code}' --max-time 20 "${SITE_URL%/}$p" || echo 000)
+            if [ "$code" != "200" ]; then failed="$failed $p($code)"; continue; fi
+            grep -q '<meta name="build-id" content="[0-9a-f]\{7,40\}"' "$body" || failed="$failed $p(no-build-id)"
+          done
+          echo "failed=$failed" >> "$GITHUB_OUTPUT"
+          if [ -n "$failed" ]; then echo "::error::monitor red:$failed"; else echo "monitor green"; fi
+      - name: Open or update the monitor-red issue
+        if: steps.probe.outputs.failed != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FAILED: ${{ steps.probe.outputs.failed }}
+        run: |
+          open=$(gh issue list -R "$GITHUB_REPOSITORY" --label monitor-red --state open --json number -q '.[0].number')
+          msg="Monitor red at $(date -u +%FT%TZ):$FAILED (run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
+          if [ -n "$open" ]; then gh issue comment "$open" -R "$GITHUB_REPOSITORY" -b "$msg"
+          else
+            gh label create monitor-red -R "$GITHUB_REPOSITORY" --color B60205 2>/dev/null || true
+            gh issue create -R "$GITHUB_REPOSITORY" --label monitor-red -t "Site monitor is red" -b "$msg"
+          fi
+          exit 1
+      - name: Close the monitor-red issue on green
+        if: steps.probe.outputs.failed == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(gh issue list -R "$GITHUB_REPOSITORY" --label monitor-red --state open --json number -q '.[].number'); do
+            gh issue close "$n" -R "$GITHUB_REPOSITORY" -c "Monitor green again at $(date -u +%FT%TZ)."
+          done

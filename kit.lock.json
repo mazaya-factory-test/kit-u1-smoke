@@ -1,0 +1,79 @@
+{
+  "kit": 1,
+  "blocks": {
+    "seo": {
+      "version": "0.1.1",
+      "status": "VERIFIED",
+      "files": {
+        "app/robots.test.ts": "9672badac6ea2639cba9cf33ba464a148d4e2c915c42792e2c6b454962e77ea7",
+        "app/robots.ts": "108301eb11c5b0cb390332acdb03bbc6ec8ed726dd5081fd850457c081690ff7",
+        "app/sitemap.test.ts": "18c7b04da7dbd05c508dcc89cae0d2a1ebcb8bbd2aa3b94a1271eb8ffe7b6389",
+        "app/sitemap.ts": "e687cf93d183c8b2da4996b509414d9a39c0c4b7f95a73ffb502ad4e122be20e",
+        "lib/seo/json-ld.test.tsx": "166127b4284c5bbdb2d9938358fd57a23e40ba30b94075e29fcef6851b358df6",
+        "lib/seo/json-ld.tsx": "db4a23c090f543810afa13ae493a5bb631efce8573fcdceec39e9e234fb7e53d",
+        "lib/seo/metadata.test.ts": "6d7afb03722aa1116bb47af10e416dccf3c94e4d63d21d3d34147552ce5d6408",
+        "lib/seo/metadata.ts": "0dcfa1705ab7c6123e9d825317cf81449d64b62c38f0700152160365fe3a24b9",
+        "lib/seo/routes.ts": "9ebade5902bcb9ecd1f75e4286c7841dde42fd039f62cdf28a413e94124e3e16",
+        "lib/seo/site.test.ts": "8c58e79c4539f7535ad6071114ccc9ba786f66190375c9327749b634df06a4b9",
+        "lib/seo/site.ts": "ecfe38a965e803c49ba8b3dcffa1c67bb3092e5156fa892936531243a59a2e0d"
+      }
+    },
+    "footer-credit": {
+      "version": "0.1.1",
+      "status": "DRAFT",
+      "files": {
+        "components/footer-credit/FooterCredit.module.css": "68c6f3131b1f07dce36c8343f3950414acdaf4041fc3fda5abcb762307c085a7",
+        "components/footer-credit/FooterCredit.test.tsx": "52bcdd336aa73f05dfdd5a35fe7163407b24c05e20f4ef25d37277714059b661",
+        "components/footer-credit/FooterCredit.tsx": "b94fdd69f9986950c9444c58e60cf0f75a3674c076f6b757315f82dfe9139982"
+      }
+    },
+    "layout-a11y": {
+      "version": "0.1.0",
+      "status": "DRAFT",
+      "files": {
+        "components/form/FormField.tsx": "89ab4145696291bf81aaedbafa9f52f1ad63719412773a07937c30d9ee138db5",
+        "components/form/FormStatus.tsx": "e0f41c684b26dc4f7988678d6db387cdd8bf717a24568e4482020b515a2c8ebe",
+        "components/form/field-ids.ts": "63cb5ea02043dfe7ac7f1aa3e5f9548047d9e2849aa9207a61e8a38be1995ff1",
+        "components/form/form.module.css": "d75fb620ce3a2ac67d2c0a26ebe199f7ad5a3e8c7b66edc9b53abf6dfd3633ac",
+        "components/form/form.test.tsx": "e282cd54fb899eaa32f2273bbf51a8792145ec49eda99c8063f8a2fafc453e2f",
+        "components/layout/ExternalLink.tsx": "658ccf8e546331d1abe9648cd0b81fc69e9c0a96a3a517f0acba9c35e3e83892",
+        "components/layout/MobileNav.tsx": "7c01d972ec6f60e3cc705de30aa2654c53c8cb4279a2ea8842f47415504ad50a",
+        "components/layout/RouteFocus.tsx": "49ad08d87d4091c1504ac684229ed32486ad368373c5cd10eaaf4143b8228ff4",
+        "components/layout/SiteFooter.tsx": "20d058c06e564959b8ac8267cbec736835897ccb64994ee8ec0556eb92fd4780",
+        "components/layout/SiteHeader.tsx": "d72759cd5d12f8b068b0d199792bc511c16ae1dd9b0fe8ec105487d2aa0c1cd1",
+        "components/layout/SkipLink.tsx": "909270f837e5023b7e586f11bcb22d0a90850c1d1e85d69febe2cbc344ea1e53",
+        "components/layout/VisuallyHidden.tsx": "68a712d40955125bfb83935510d182af1a5f15dce113bf199115e12c516b06d8",
+        "components/layout/layout.module.css": "1f2e00f89ca16c313b8e44fd7bced917cc947cae96035b1c8a2504c78090cc03",
+        "components/layout/layout.test.tsx": "62156113c776f07505af89c4fee86cce2e953397e0a741668ebed92f85ea4ba1",
+        "components/layout/mobile-nav-state.ts": "15413065999af9a210af084248ec0fc4008e95c92387b057036cd22d791bf9a5",
+        "components/layout/route-focus-logic.ts": "058178481612dd98381d62ddd4928b0c1a3f3953d99bce6c17f3bc9529dd2098",
+        "lib/a11y/reduced-motion.test.ts": "bdf1e7edbc012f1b42503060461e065f1182022a67f2acddebcf93624c6f2dd6",
+        "lib/a11y/reduced-motion.ts": "4a0b1cc0ea991215952793c527160502742860c24ebd4fcc7561c3479c437b9d",
+        "lib/site/nav.ts": "4c862bc431177a4c8184f180013bb374974485f8065cc9d62771a92f17d07e78"
+      }
+    },
+    "gates": {
+      "version": "0.1.0",
+      "status": "DRAFT",
+      "files": {
+        ".githooks/pre-commit": "13876399ca4a3df8b29bdafd9150f175ac04643a98d4a9dccdeeb2ff2ab4b3f5",
+        ".github/workflows/verify.yml": "b457e9b1917b686beb519f0426a41efb00cb6d476c05a880cfc5ce8f8b35cd51",
+        "e2e/a11y.spec.ts": "b43b2a80f0b9d70a5cbd88c7ec191204b5d45414bd87180429089c5e7d183d02",
+        "e2e/routes.ts": "70e8a41f6c457daaff24bc9d117ee35bf441ed28a4e294d9eb4c980b5b965fe0",
+        "e2e/static-server.mjs": "dff69daa6fc77f0cbca3616d185f1dd659b21f0175a92ca54df2002a1f078c9b",
+        "playwright.config.ts": "b7277c83af415d7e31befcb3ef6aea387198e03e64c8e633751463ddd4707a94",
+        "scripts/check-links.d.mts": "16a00d2ff2c6674ccc73b07b8c0e8757616c7aa4cfb5d4ea6cb8b41054554104",
+        "scripts/check-links.mjs": "b09bc9e3236c31cefe55f6f33a0024eca8d4349a38a5735797cef2710a2e9a4b",
+        "scripts/check-links.test.ts": "59a0b47c19fcb6b92de6201e9e1650679ea29bf8e5ac53bdd21c8e9d8f1f98dd",
+        "scripts/secret-patterns.d.mts": "56dc6f6ffed87b0cb572dbfdba0052a740ce33d61eb6f25ad3f0edc75b7622f1",
+        "scripts/secret-patterns.mjs": "d994fab247a28d076f4a5692995c0a2fc35f736b1c0b7c681ef54c8e91bc12b0",
+        "scripts/secret-scan.d.mts": "a732363ef2846cdf099838fd5a08aa2ea96ac277e78ab42045943c5d4724dc55",
+        "scripts/secret-scan.mjs": "10093a8d1487c02483ff49806d7d5b46c0002b20515c7891699b6f09b020c936",
+        "scripts/secret-scan.test.ts": "d580a1c32264f3f4f49a494c3b2c3bdf395fe36a4d77a3a17feec2b47bb673e0",
+        "scripts/setup-hooks.d.mts": "26088f93897fe7b8276074d34118a31b05cfccc891257007bf8c108e99b845c6",
+        "scripts/setup-hooks.mjs": "9796d2dbb6250ba0e6ffc04043aef544f066b418fa97b28669d2ac70c39e28e2",
+        "scripts/setup-hooks.test.ts": "7de0a84d51d1e620eb6abc5c66f83639981581adddf28ab17c3235f0bdfe8f06"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+#!/bin/sh
+# kit:gates@0.1.0 harvested from mazaya-studios:.githooks/pre-commit
+# Blocks a commit whose STAGED changes contain a credential shape or an .env file.
+# The patterns live in scripts/secret-patterns.mjs; this wrapper only locates and runs the scanner.
+set -eu
+
+root=$(git rev-parse --show-toplevel)
+scanner="$root/scripts/secret-scan.mjs"
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node not found on PATH; cannot run the secret scan, commit rejected." >&2
+  exit 1
+fi
+if [ ! -f "$scanner" ]; then
+  echo "pre-commit: $scanner is missing; commit rejected." >&2
+  exit 1
+fi
+
+exec node "$scanner"

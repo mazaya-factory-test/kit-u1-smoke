@@ -1,0 +1,6 @@
+Copyright (c) {{year}} {{client_name}}. All rights reserved.
+
+This website's source code and content belong to {{client_name}}.
+It was built by Mazaya Studios and handed over to {{client_name}}, who owns this repository.
+
+(DRAFT: the license default is open decision 12 in FACTORY-SPEC.md §2; this text stands until domain/license-defaults.json is VERIFIED.)

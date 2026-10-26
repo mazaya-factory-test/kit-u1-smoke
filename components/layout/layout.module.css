@@ -1,0 +1,213 @@
+/* Layout and a11y styles. Every colour reads an app token with a safe fallback,
+   so the block looks right before the app defines its own tokens:
+   --color-bg, --color-text, --color-muted, --color-border, --color-accent, --focus-ring. */
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  background: var(--color-bg, #fff);
+  color: var(--color-text, #111);
+  border: 2px solid var(--focus-ring, #1d4ed8);
+  transform: translateY(-200%);
+}
+
+.skip:focus-visible {
+  transform: translateY(1rem);
+  outline: 2px solid var(--focus-ring, #1d4ed8);
+  outline-offset: 2px;
+}
+
+.header {
+  background: var(--color-bg, #fff);
+  border-bottom: 1px solid var(--color-border, #d1d5db);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 64px;
+  padding-inline: 1rem;
+  position: relative;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-text, #111);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand:focus-visible,
+.navLink:focus-visible,
+.panelLink:focus-visible,
+.footerLink:focus-visible,
+.toggle:focus-visible,
+.externalLink:focus-visible {
+  outline: 2px solid var(--focus-ring, #1d4ed8);
+  outline-offset: 2px;
+}
+
+.desktopNav {
+  display: none;
+}
+
+.navList,
+.panelList,
+.footerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navLink,
+.panelLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 0.25rem;
+  color: var(--color-muted, #4b5563);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.navLink:hover,
+.panelLink:hover {
+  color: var(--color-text, #111);
+}
+
+.navLink[aria-current="page"],
+.panelLink[aria-current="page"] {
+  color: var(--color-text, #111);
+  border-bottom-color: var(--color-accent, #1d4ed8);
+}
+
+.primary {
+  color: var(--color-accent, #1d4ed8);
+  font-weight: 600;
+}
+
+.mobileWrap {
+  display: block;
+}
+
+.toggle {
+  min-height: 44px;
+  min-width: 44px;
+  padding-inline: 0.75rem;
+  background: transparent;
+  color: var(--color-text, #111);
+  border: 1px solid var(--color-border, #6b7280);
+  cursor: pointer;
+  font: inherit;
+}
+
+.panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 50;
+  padding: 1rem;
+  background: var(--color-bg, #fff);
+  border-bottom: 1px solid var(--color-border, #d1d5db);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.panelList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.panelLink {
+  display: flex;
+}
+
+@media (min-width: 48rem) {
+  .desktopNav {
+    display: block;
+  }
+
+  .mobileWrap {
+    display: none;
+  }
+}
+
+.footer {
+  border-top: 1px solid var(--color-border, #d1d5db);
+  background: var(--color-bg, #fff);
+  color: var(--color-muted, #4b5563);
+}
+
+.footerInner {
+  padding: 2rem 1rem;
+}
+
+.footerColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 2rem;
+}
+
+.footerHeading {
+  margin: 0 0 0.5rem;
+  color: var(--color-text, #111);
+  font-size: 1rem;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-muted, #4b5563);
+  text-decoration: underline;
+}
+
+.footerLink:hover {
+  color: var(--color-text, #111);
+}
+
+.footerBottom {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border, #d1d5db);
+  font-size: 0.875rem;
+}
+
+.externalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 44px;
+}

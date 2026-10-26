@@ -1,0 +1,4 @@
+# During the build every spec and workflow change waits for Ben's review (FACTORY-SPEC.md §5 H15).
+# Rewritten to the client owner at handover.
+.github/** @{{ben_login}}
+spec/** @{{ben_login}}

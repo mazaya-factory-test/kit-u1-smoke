@@ -1,0 +1,60 @@
+/* Form styles. Tokens with fallbacks: --color-bg, --color-text, --color-muted, --color-border,
+   --color-error, --focus-ring. */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  color: var(--color-text, #111);
+  font-weight: 600;
+}
+
+.hint {
+  margin: 0;
+  color: var(--color-muted, #4b5563);
+}
+
+.control {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-bg, #fff);
+  color: var(--color-text, #111);
+  border: 1px solid var(--color-border, #6b7280);
+  font: inherit;
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--focus-ring, #1d4ed8);
+  outline-offset: 2px;
+}
+
+.control[aria-invalid="true"] {
+  border-color: var(--color-error, #b91c1c);
+}
+
+.error {
+  margin: 0;
+  color: var(--color-error, #b91c1c);
+}
+
+.status {
+  margin: 0;
+  min-height: 1.4em;
+  color: var(--color-muted, #4b5563);
+}
+
+.status:focus-visible {
+  outline: 2px solid var(--focus-ring, #1d4ed8);
+  outline-offset: 2px;
+}
+
+.failed {
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--color-error, #b91c1c);
+  color: var(--color-error, #b91c1c);
+}

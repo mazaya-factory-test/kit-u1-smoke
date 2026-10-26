@@ -1,0 +1,59 @@
+/* Design tokens. The build lane replaces these with the client's palette and type
+   (DESIGN-DIRECTION.md). Keep contrast at WCAG AA: the a11y e2e scan enforces it. */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-muted: #555555;
+  --color-accent: #1d4ed8;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --space: 1rem;
+  --measure: 68ch;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+main {
+  display: block;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: calc(var(--space) * 2) var(--space);
+}
+
+main:focus {
+  outline: none;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

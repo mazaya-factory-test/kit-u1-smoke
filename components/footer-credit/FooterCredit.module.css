@@ -1,0 +1,16 @@
+/* kit:footer-credit@0.1.1. Small and muted on purpose; override with className. */
+.credit {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  /* Muted by size, not by fading: opacity dropped the text below WCAG AA contrast
+     (caught by the gates block's axe scan on the first U1 render). Inherit the
+     footer's text colour, which the site already keeps at AA. */
+  color: inherit;
+}
+
+.credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
