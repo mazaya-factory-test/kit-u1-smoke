@@ -31,6 +31,8 @@ jobs:
         env:
           NEXT_PUBLIC_BUILD_ID: ${{ github.sha }}
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true # a fresh client repo has Pages off; the token holds pages: write
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
